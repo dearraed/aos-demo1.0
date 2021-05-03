@@ -1,0 +1,623 @@
+{
+	"info": {
+		"_postman_id": "dc44e4fd-3428-4db9-bde0-8550c401a37c",
+		"name": "AOS 1.0 By Med Raed BESBES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Imports",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/v1/imports",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"imports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")\r",
+							"pm.globals.set(\"aos-session\", JSON.parse(pm.response.text()).data.tokens.accessToken)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\" : \"Anas Besbes\",\r\n\t\"email\": \"anas.besbesgmail.com\",\r\n\t\"password\": \"anas1712\",\r\n\t\"profilePicUrl\": \"http://image1.aos.anasbesbes.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/signup/basic",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"signup",
+						"basic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")\r",
+							"pm.globals.set(\"aos-session\", JSON.parse(pm.response.text()).data.tokens.accessToken)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n\t\"email\": \"raed.besbes@gmail.com\",\r\n\t\"password\": \"raed1301\"\r\n\t\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/login/basic",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"login",
+						"basic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"url\", \"http://localhost:3000\")\r",
+							"pm.globals.set(\"api-key\", \"MRUSDerB5a7WvyAEt4n8IrtToSHzK7Uj\")\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n\t\"email\": \"raed.besbes@gmail.com\",\r\n\t\"password\": \"raed1301\"\r\n\t\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task2 by anas\",\r\n    \"description\":\"my task 2 description by anas\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task3\",\r\n    \"description\":\"my task 3 description by Raed\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/profile/user/all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"profile",
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get my profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task3\",\r\n    \"description\":\"my task 3 description by Raed\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/profile/my",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"profile",
+						"my"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put my profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\":\"monmon\",\r\n   \"profilePicUrl\":\"http://img2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/profile",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get my tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task3\",\r\n    \"description\":\"my task 3 description by Raed\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/my",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"my"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"description\":\"task by anas edited 1\",\r\n   \"completed\": true\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/id/609012f564272d4e3cdf2fe0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"id",
+						"609012f564272d4e3cdf2fe0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"description\":\"my task 1 created by raed edited\",\r\n   \"completed\": false\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/id/609012f564272d4e3cdf2fe0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"id",
+						"609012f564272d4e3cdf2fe0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comment task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"comment\":\"commented2 by raed on task anas\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/id/609012f564272d4e3cdf2fe0/comment",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"id",
+						"609012f564272d4e3cdf2fe0",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "share task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"shareTo\":[\"608fc73b626f9840b4a631fd\", \"608ecc59803e1b1874276e3c\"]\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/id/609012f564272d4e3cdf2fe0/share",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"id",
+						"609012f564272d4e3cdf2fe0",
+						"share"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shared to me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{aos-session}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"shareTo\":[\"608fc73b626f9840b4a631fd\",\"608fcfcb297aa108dc58ae09\"]\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/task/shared/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						"shared",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

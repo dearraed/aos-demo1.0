@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "608be4895880440e40aadfc9"
+  },
+  "code": "TESTER",
+  "status": true
+},{
+  "_id": {
+    "$oid": "608be4895880440e40aadfca"
+  },
+  "code": "WRITER",
+  "status": true
+},{
+  "_id": {
+    "$oid": "608be4895880440e40aadfcb"
+  },
+  "code": "EDITOR",
+  "status": true
+},{
+  "_id": {
+    "$oid": "608be4895880440e40aadfcc"
+  },
+  "code": "ADMIN",
+  "status": true
+}]
