@@ -2,12 +2,22 @@ import mongoose from 'mongoose';
 import Logger from '../core/Logger';
 import { db } from '../config';
 
-// Build the connection string
-/*const dbURI = `mongodb://${db.user}:${encodeURIComponent(db.password)}@${db.host}:${db.port}/${
-  db.name
-}`;*/
 
-const dbURI = `mongodb://localhost:27017/demo-aos-medraedbesbes`;
+let dbURI:any ="";
+// Build the connection string in case of use authenticated database and env variables
+/*if(db.host != undefined)
+   dbURI = `mongodb://${db.user}:${encodeURIComponent(db.password)}@${db.host}:${db.port}/${
+  db.name}`;
+else 
+   dbURI = `mongodb://mongo:27017/demo-aos-medraedbesbes`;
+*/
+
+//in case of non authenticated database to prevent problem execution
+//if run with docker
+  if(process.env.DB_HOST != undefined)
+    dbURI = `mongodb://mongo:27017/demo-aos-medraedbesbes`;
+  else
+  dbURI = `mongodb://localhost:27017/demo-aos-medraedbesbes`;
 
 const options = {
   useNewUrlParser: true,

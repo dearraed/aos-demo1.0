@@ -3,11 +3,11 @@ export const environment = "development";
 export const port = 3000;
 
 export const db = {
-  name: process.env.DB_NAME || 'dbname',
-  host: process.env.DB_HOST || 'dbhost',
-  port: process.env.DB_PORT || 'dbport',
-  user: process.env.DB_USER || 'dbuser',
-  password: process.env.DB_USER_PWD || 'dbpassword',
+  name: process.env.DB_NAME || '',
+  host: process.env.DB_HOST || '',
+  port: process.env.DB_PORT || '',
+  user: process.env.DB_USER || '',
+  password: process.env.DB_USER_PWD || '',
 };
 
 export const corsUrl = "*";
