@@ -12,7 +12,7 @@ import bcrypt from 'bcrypt';
 import _ from 'lodash';
 
 const router = express.Router();
-
+//api login
 export default router.post(
   '/basic',
   validator(schema.userCredential),

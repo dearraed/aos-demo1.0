@@ -17,6 +17,7 @@ const router = express.Router();
 router.use('/', authentication);
 /*-------------------------------------------------------------------------*/
 
+//api get my profile
 router.get(
   '/my',
   asyncHandler(async (req: ProtectedRequest, res) => {
@@ -28,6 +29,7 @@ router.get(
   }),
 );
 
+//api put my profile
 router.put(
   '/',
   validator(schema.profile),
@@ -46,6 +48,7 @@ router.put(
   }),
 );
 
+//api get all users
 router.get(
   '/user/all',
   asyncHandler(async (req: ProtectedRequest, res) => {

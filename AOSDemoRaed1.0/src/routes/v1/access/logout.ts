@@ -11,7 +11,7 @@ const router = express.Router();
 // Below all APIs are private APIs protected for Access Token
 router.use('/', authentication);
 /*-------------------------------------------------------------------------*/
-
+//api logout
 router.delete(
   '/',
   asyncHandler(async (req: ProtectedRequest, res) => {

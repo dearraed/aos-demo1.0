@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi';
 import { JoiObjectId } from '../../../helpers/validator';
 
+//define validation controls of call apis
 export default {
   userId: Joi.object().keys({
     id: JoiObjectId().required(),

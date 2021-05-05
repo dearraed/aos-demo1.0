@@ -16,22 +16,12 @@ import UserRepo from '../../../database/repository/UserRepo';
 
 const router = express.Router();
 
-/*
-router.get(
-  '/public/id/:id',
-  validator(schema.userId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res) => {
-    const user = await UserRepo.findPublicProfileById(new Types.ObjectId(req.params.id));
-    if (!user) throw new BadRequestError('User not registered');
-    return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl'])).send(res);
-  }),
-);
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token
 router.use('/', authentication);
 /*-------------------------------------------------------------------------*/
-
+//api get my tasks
 router.get(
   '/my',
   asyncHandler(async (req: ProtectedRequest, res) => {
@@ -43,6 +33,8 @@ router.get(
     );
   }),
 );
+
+//api update my task by taskId
 router.put(
   '/id/:id',
   validator(schema.putTask),
@@ -63,6 +55,7 @@ router.put(
   }),
 );
 
+//api share my task by task id
 router.put(
   '/id/:id/share',
   validator(schema.shareTask),
@@ -91,6 +84,8 @@ router.put(
   }),
 );
 
+
+//api get tasks shared to me
 router.get(
   '/shared/me',
   asyncHandler(async (req: ProtectedRequest, res) => {
@@ -103,6 +98,7 @@ router.get(
   }),
 );
 
+//api comment task by idTask
 router.put(
   '/id/:id/comment',
   validator(schema.commentTask),
@@ -119,7 +115,7 @@ router.put(
   }),
 );
 
-
+//api delete my task
 router.delete(
   '/id/:id',
   asyncHandler(async (req: ProtectedRequest, res) => {
@@ -134,7 +130,7 @@ router.delete(
   }),
 );
 
-
+//api create a task
 router.post(
   '/',
   validator(schema.taskCreate),

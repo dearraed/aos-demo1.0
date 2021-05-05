@@ -15,6 +15,7 @@ import { RoleCode } from '../../../database/model/Role';
 
 const router = express.Router();
 
+//api create an account (signup)
 router.post(
   '/basic',
   validator(schema.signup),

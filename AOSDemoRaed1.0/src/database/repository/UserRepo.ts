@@ -6,7 +6,7 @@ import KeystoreRepo from './KeystoreRepo';
 import Keystore from '../model/Keystore';
 
 export default class UserRepo {
-  // contains critical information of the user
+  // function find user by id
   public static findById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true })
       .select('+email +password +roles')
@@ -18,6 +18,7 @@ export default class UserRepo {
       .exec();
   }
 
+  //function find user by email
   public static findByEmail(email: string): Promise<User | null> {
     return UserModel.findOne({ email: email, status: true })
       .select('+email +password +roles')
@@ -30,6 +31,7 @@ export default class UserRepo {
       .exec();
   }
 
+  //function find profile by id
   public static findProfileById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true })
       .select('+roles')
@@ -42,10 +44,12 @@ export default class UserRepo {
       .exec();
   }
 
+  
   public static findPublicProfileById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true }).lean<User>().exec();
   }
 
+  //function create a user
   public static async create(
     user: User,
     accessTokenKey: string,
@@ -67,6 +71,7 @@ export default class UserRepo {
     return { user: createdUser, keystore: keystore };
   }
 
+  //function update user for updating tokens and information
   public static async update(
     user: User,
     accessTokenKey: string,
@@ -80,6 +85,7 @@ export default class UserRepo {
     return { user: user, keystore: keystore };
   }
 
+  //function update user info
   public static updateInfo(user: User): Promise<any> {
     user.updatedAt = new Date();
     return UserModel.updateOne({ _id: user._id }, { $set: { ...user } })
@@ -87,6 +93,7 @@ export default class UserRepo {
       .exec();
   }
 
+  //function find all users
   public static findAll(): Promise<User[]> {
     return UserModel.find({})
       .select('+email +name +profilePicUrl')
@@ -97,6 +104,7 @@ export default class UserRepo {
       .exec();
   }
 
+  //function find users by ids, used for validation array user param on shareTo task api
   public static findUsersByIds(ids: Types.ObjectId[]): Promise<User[]> {
     return UserModel.find({_id: {$in: ids}})
       .select('+email +name +profilePicUrl')

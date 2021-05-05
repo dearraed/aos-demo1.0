@@ -6,7 +6,7 @@ import KeystoreRepo from './KeystoreRepo';
 import Keystore from '../model/Keystore';
 
 export default class TaskRepo {
-  // contains critical information of the user
+  // function to find task by id and creator
 public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promise<Task | null> {
     return TaskModel.findOne({ _id: idTask, createdBy: createdBy})
     .select('+title +description +completed +sharedTo +comments +createdBy')
@@ -29,6 +29,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
       .exec();
   }
 
+  //function to find task by id
   public static findById(idTask: Types.ObjectId): Promise<Task | null> {
     return TaskModel.findOne({ _id: idTask})
     .select('+title +description +completed +sharedTo +comments +createdBy')
@@ -36,6 +37,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
       .exec();
   }
 
+  //find my tasks function by user
   public static findMyTasks(user: User): Promise<Task[]> {
     return TaskModel.find({createdBy: user})
     .populate({
@@ -58,6 +60,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
   }
 
 
+  //find tasks shared to me by user
   public static findTasksSharedToMe(user: User): Promise<Task[]> {
     return TaskModel.find({sharedTo: user})
     .populate({
@@ -80,6 +83,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
   }
 
 
+  //find task by title to verify unicity
   public static findByTitle(title: string): Promise<Task | null> {
     return TaskModel.findOne({ title: title })
       .lean<Task>()
@@ -87,6 +91,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
   }
 
 
+  //function to create a task
   public static async create(task: Task): Promise<Task> {
     const now = new Date();
     task.createdAt = now;
@@ -95,6 +100,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
     return createdTask;
   }
 
+  //function delete task by id task and user
   public static deleteTask(taskId: Types.ObjectId, user: User): Promise<any>{
    return TaskModel.findOneAndDelete({ _id: taskId, createdBy: user._id })
         .populate({
@@ -116,6 +122,7 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
       .exec();
   }
 
+  //function update task
   public static updateTask(task: Task): Promise<any> {
     task.updatedAt = new Date();
     return TaskModel.updateOne({ _id: task._id }, { $set: { ...task } })
@@ -123,13 +130,14 @@ public static findByIdAndCreator(idTask: Types.ObjectId, createdBy: User): Promi
       .exec();
   }
 
+  //function share task by id task and specifying users to share to
   public static shareTask(task: Task, sharedTo: Types.ObjectId[]): Promise<any> {
     return TaskModel.updateOne({ _id: task._id}, { $addToSet: { "sharedTo": sharedTo }})
       .lean()
       .exec();
   }
 
-  
+  //function comment task by task and string comment and user
   public static async commentTask(task: Task, comment : string, by: User): Promise<any> {
     await TaskModel.updateOne({ _id: task._id}, { $push: { "comments": {by: by._id, comment: comment} }})
       .lean()

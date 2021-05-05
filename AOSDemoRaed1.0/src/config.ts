@@ -1,7 +1,9 @@
 // Mapper for environment variables
 export const environment = "development";
 export const port = 3000;
-
+//db configuration 
+//used with docker and authentication database connection 
+//else use database without authentication
 export const db = {
   name: process.env.DB_NAME || '',
   host: process.env.DB_HOST || '',

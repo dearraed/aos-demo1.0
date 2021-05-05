@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi';
 import { JoiAuthBearer } from '../../../helpers/validator';
 
+//define validation controls of call apis
 export default {
   userCredential: Joi.object().keys({
     email: Joi.string().required().email(),
